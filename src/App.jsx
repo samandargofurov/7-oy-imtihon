@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import HeadPhones from "./pages/HeadPhones";
 import Speakers from "./pages/Speakers";
@@ -6,18 +6,29 @@ import EarPhones from "./pages/EarPhones";
 import Layout from "./layout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
+  const [ logged, setLogged ] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
+  useEffect(() => {
+    const user = localStorage.getItem('users')
+    if (user && location.pathname != '/register') {
+      setLogged(true);
+      navigate('/')
+    }
+  }, [])
+  
   function ProtectedRoute({
     children,
-    isAuthentication,
+    isAuthentication = logged,
     redirectTo = "/login",
   }) {
     if (!isAuthentication) {
-      navigate(redirectTo);
+      navigate(redirectTo)
     }
 
     return children;
@@ -33,7 +44,7 @@ function App() {
         <Route
           path="/"
           element={
-            <ProtectedRoute isAuthentication={false}>
+            <ProtectedRoute isAuthentication={true}>
               <Layout>
                 <Home></Home>
               </Layout>
@@ -43,7 +54,7 @@ function App() {
         <Route
           path="/headphones"
           element={
-            <ProtectedRoute isAuthentication={false}>
+            <ProtectedRoute isAuthentication={true}>
               <Layout>
                 <HeadPhones></HeadPhones>
               </Layout>
@@ -53,7 +64,7 @@ function App() {
         <Route
           path="/speakers"
           element={
-            <ProtectedRoute isAuthentication={false}>
+            <ProtectedRoute isAuthentication={true}>
               <Layout>
                 <Speakers></Speakers>
               </Layout>
@@ -63,7 +74,7 @@ function App() {
         <Route
           path="/earphones"
           element={
-            <ProtectedRoute isAuthentication={false}>
+            <ProtectedRoute isAuthentication={true}>
               <Layout>
                 <EarPhones></EarPhones>
               </Layout>
