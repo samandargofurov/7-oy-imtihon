@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     const user = localStorage.getItem('users')
     if (user && location.pathname != '/register') {
-      setLogged(true);
+      setLogged(false);
       navigate('/')
     }
   }, [])

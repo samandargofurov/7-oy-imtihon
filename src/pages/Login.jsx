@@ -1,32 +1,23 @@
 import { useRef, useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Login() {
   const [users, setUsers] = useState([]);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    const savedUsers = localStorage.getItem("users");
+    const savedUsers = JSON.parse(localStorage.getItem("users"));
     if (savedUsers) {
       setUsers(savedUsers);
     }
   }, []);
 
-  function handleClick(e) {
-    e.preventDefault();
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
+  function handleClick() {
 
-    if (true) {
-      navigate(`/`);
-    } else {
-      alert("Invalid email or password!");
-      emailRef.current.value = null;
-      passwordRef.current.value = null;
-    }
+    
   }
+
 
   return (
     <>
