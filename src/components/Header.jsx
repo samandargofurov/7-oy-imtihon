@@ -87,7 +87,7 @@ function Header() {
                           Remove all
                         </button>
                       </div>
-                      <div className="mt-">
+                      <div className="mt-4">
                         <div className="flex justify-between items-center">
                           <div className="flex items-center gap-6">
                             <img

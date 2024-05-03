@@ -5,7 +5,6 @@ import Card from '../components/Card'
 import HeroText from '../components/HeroText'
 import { NavLink } from 'react-router-dom'
 
-
 function HeadPhones() {
 
   return (
