@@ -8,11 +8,11 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { useEffect, useState } from "react";
 import "./App.css";
+import Details from "./pages/Details";
 
 function App() {
   const [ logged, setLogged ] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     const user = localStorage.getItem('users')
@@ -20,7 +20,7 @@ function App() {
       setLogged(false);
       navigate('/')
     }
-  }, [])
+  }, []);
   
   function ProtectedRoute({
     children,
@@ -33,7 +33,6 @@ function App() {
 
     return children;
   }
-
   return (
     <>
       <Routes>
@@ -41,6 +40,7 @@ function App() {
         <Route path="/register" element={<Register></Register>}></Route>
 
         {/* protected route */}
+        <Route path="/about/:id" element={<ProtectedRoute isAuthentication={true}><Layout><Details></Details></Layout></ProtectedRoute>}/>
         <Route
           path="/"
           element={

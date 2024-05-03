@@ -1,8 +1,6 @@
-import headphone from '../assets/product-yx1-earphones/pageheadphone.jpg'
+import earphone from '../assets/product-yx1-earphones/yx1.jpg'
 import Card from '../components/Card'
 import HeroText from '../components/HeroText'
-import DescProduct from '../components/DescProduct'
-import Footer from '../components/Footer'
 
 function EarPhones() {
   return (
@@ -17,7 +15,7 @@ function EarPhones() {
       <div className='container w-[1109px] mx-auto'>
         <div className='flex justify-between items-center mt-20'>
           <div>
-            <img src={headphone} alt="" width={540} height={560}  />
+            <img src={earphone} alt="" width={540} height={560}  />
           </div>
           <div>
           <HeroText />
@@ -27,11 +25,6 @@ function EarPhones() {
         <div className='mt-[160px]'>
         <Card></Card>
         </div>
-
-        <DescProduct></DescProduct>
-      </div>
-      <div className='mt-[160px]'>
-        <Footer></Footer>
       </div>
     </>
   )

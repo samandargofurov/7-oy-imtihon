@@ -23,16 +23,16 @@ function Header() {
 
             <div className="navbar-center">
               <ul className="flex gap-10 text-sm">
-                <li className="hover:text-[#D87D4A]">
+                <li className="hover:text-[#D87D4A] text-white">
                   <NavLink to="/">HOME</NavLink>
                 </li>
-                <li className="hover:text-[#D87D4A]">
+                <li className="hover:text-[#D87D4A] text-white">
                   <NavLink to="/headphones">HEADPHONES</NavLink>
                 </li>
-                <li className="hover:text-[#D87D4A]">
+                <li className="hover:text-[#D87D4A] text-white">
                   <NavLink to="/speakers">SPEAKERS</NavLink>
                 </li>
-                <li className="hover:text-[#D87D4A]">
+                <li className="hover:text-[#D87D4A] text-white">
                   <NavLink to="/earphones">EARPHONES</NavLink>
                 </li>
               </ul>

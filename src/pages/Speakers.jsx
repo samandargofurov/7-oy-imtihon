@@ -1,8 +1,7 @@
-import headphone from '../assets/product-yx1-earphones/pageheadphone.jpg'
+import zx9 from '../assets/product-yx1-earphones/zx9.jpg'
+import zx7 from '../assets/product-yx1-earphones/zx7.jpg'
 import Card from '../components/Card'
 import HeroText from '../components/HeroText'
-import DescProduct from '../components/DescProduct'
-import Footer from '../components/Footer'
 
 function Speakers() {
   return (
@@ -19,7 +18,7 @@ function Speakers() {
       <div className="container w-[1109px] mx-auto">
         <div className="flex justify-between items-center mt-20">
           <div>
-            <img src={headphone} alt="" width={540} height={560} />
+            <img src={zx9} alt="" width={540} height={560} />
           </div>
           <div>
             <HeroText />
@@ -31,18 +30,13 @@ function Speakers() {
             <HeroText />
           </div>
           <div>
-            <img src={headphone} alt="" width={540} height={560} />
+            <img src={zx7} alt="" width={540} height={560} />
           </div>
         </div>
 
         <div className="mt-[160px]">
           <Card></Card>
         </div>
-
-        <DescProduct></DescProduct>
-      </div>
-      <div className='mt-[160px]'>
-        <Footer></Footer>
       </div>
     </>
   );
