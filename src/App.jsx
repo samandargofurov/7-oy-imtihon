@@ -9,6 +9,7 @@ import Register from "./pages/Register";
 import Details from "./pages/Details";
 import "./App.css";
 import Checkout from "./pages/Checkout";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   const navigate = useNavigate();
@@ -71,6 +72,13 @@ function App() {
                 <EarPhones></EarPhones>
               </Layout>
             </ProtectedRoute>
+          }
+        ></Route>
+
+         <Route
+          path="*"
+          element={
+              <ErrorPage></ErrorPage>
           }
         ></Route>
       </Routes>
