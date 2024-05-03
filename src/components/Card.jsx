@@ -13,7 +13,7 @@ function Card() {
             <div className="absolute z-10 pl-[88px]"><img src={headphones} alt="" /></div>
             <div className="flex flex-col gap-3 pt-20 mt-20 justify-center items-center bg-[#F1F1F1] w-[300px] h-[180px] rounded-lg">
               <div className="uppercase font-medium text-lg">headphones</div>
-              <NavLink to='/headphone' className='flex gap-3 transition duration-500 hover:translate-x-3'>
+              <NavLink to='/headphones' className='flex gap-3 transition duration-500 hover:translate-x-3'>
                 <div className="uppercase font-medium opacity-60">shop</div>
                 <img src={path} alt="" />
               </NavLink>
@@ -24,7 +24,7 @@ function Card() {
             <div className="absolute z-10 pl-[88px]"><img src={speakers} alt="" /></div>
             <div className="flex flex-col gap-3 pt-20 mt-20 justify-center items-center bg-[#F1F1F1] w-[300px] h-[180px] rounded-lg">
               <div className="uppercase font-medium text-lg">speakers</div>
-              <NavLink to='/speaker' className='flex gap-3 transition duration-500 hover:translate-x-3'>
+              <NavLink to='/speakers' className='flex gap-3 transition duration-500 hover:translate-x-3'>
                 <div className="uppercase font-medium opacity-60">shop</div>
                 <img src={path} alt="" />
               </NavLink>
@@ -35,7 +35,7 @@ function Card() {
             <div className="absolute z-10 pl-[88px]"><img src={earphones} alt="" /></div>
             <div className="flex flex-col gap-3 pt-20 mt-20 justify-center items-center bg-[#F1F1F1] w-[300px] h-[180px] rounded-lg">
               <div className="uppercase font-medium text-lg">earphones</div>
-              <NavLink to='/earphone' className='flex gap-3 transition duration-500 hover:translate-x-3'>
+              <NavLink to='/earphones' className='flex gap-3 transition duration-500 hover:translate-x-3'>
                 <div className="uppercase font-medium opacity-60">shop</div>
                 <img src={path} alt="" />
               </NavLink>

@@ -29,7 +29,7 @@ function HeadPhones() {
 
         <div className='flex justify-between items-center mt-[160px]'>
           <div>
-              <NavLink to='//about/xx99-mark-one-headphones'><HeroText /></NavLink>
+              <NavLink to='/about/xx99-mark-one-headphones'><HeroText /></NavLink>
           </div>
           <div>
             <img src={xx99Mark1} alt="" width={540} height={560}  />
@@ -41,7 +41,7 @@ function HeadPhones() {
             <img src={xx59} alt="" width={540} height={560}  />
           </div>
           <div>
-              <NavLink to='/'><HeroText /></NavLink>
+              <NavLink to='/about/xx59-headphones'><HeroText /></NavLink>
           </div>
         </div>
 
