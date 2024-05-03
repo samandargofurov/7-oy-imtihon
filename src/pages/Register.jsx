@@ -2,62 +2,40 @@ import { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 function Register() {
-  const [users, setUsers] = useState([]);
-
-  const nameRef = useRef(null);
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
   const navigate = useNavigate();
+  const nameRef = useRef("");
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
 
   useEffect(() => {
-    const users = localStorage.getItem("users");
-    if (users) {
-      setUsers(users);
+    const LoggedIn = JSON.parse(localStorage.getItem("logged"));
+    if (LoggedIn) {
+      localStorage.setItem("logged", JSON.stringify(true));
+      window.location.reload();
     }
   }, []);
 
-  const validateEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
-
-  function validate(name, email, password) {
-    if (name.current.value.length < 3) {
-      alert("Name must be at least 3 characters long");
-      return false;
-    }
-
-    if (!validateEmail(email.current.value)) {
-      alert("Please enter a valid email address");
-      return false;
-    }
-
-    if (password.current.value.length < 3) {
-      alert("Password must be at least 3 characters long");
-      return false;
-    }
-
-    return true;
-  }
-
   function handleClick(e) {
     e.preventDefault();
-    const isValid = validate(nameRef, emailRef, passwordRef);
-
-    if (isValid) {
-      const user = {
-        name: nameRef.current.value,
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
-      };
-
-      const updatedUsers = [...users, user];
-      setUsers(updatedUsers);
-      localStorage.setItem("users", JSON.stringify(updatedUsers));
-      navigate("/login");
+    const username = nameRef.current.value.trim();
+    const email = emailRef.current.value.trim();
+    const password = passwordRef.current.value.trim();
+    if ((username === "", email === "", password === "")) {
+      alert("please Enter email");
+      return false;
     }
-    nameRef.current.value = null;
-    emailRef.current.value = null;
-    passwordRef.current.value = null;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      alert("please, enter email");
+      return;
+    }
+    const user = {
+      name: username,
+      email: email,
+      password: password,
+    }
+    localStorage.setItem("users", JSON.stringify(user));
+    navigate("/login");
   }
   return (
     <>

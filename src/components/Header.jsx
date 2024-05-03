@@ -1,13 +1,26 @@
+import { useDispatch, useSelector } from "react-redux";
 import img from "../assets/audiophile.svg";
+import yx1 from "../assets/product-yx1-earphones/yx1.jpg";
 import { NavLink, useNavigate } from "react-router-dom";
+import { decrement, increment } from "../redux/counterSlice";
 
 function Header() {
   const navigate = useNavigate();
-
-  function handleRemove() {}
+  const dispatch = useDispatch();
+  const counter = useSelector((state) => state.counter.value);
+  const saveProducts = useSelector((state) => state.savedItem)
+  console.log(saveProducts);
 
   function handleLogin() {
     navigate("/login");
+  }
+
+  function handleIncrement() {
+    dispatch(increment(1));
+  }
+
+  function handleDecrement() {
+    dispatch(decrement(1));
   }
 
   return (
@@ -65,23 +78,39 @@ function Header() {
                   </div>
                   <div
                     tabIndex={0}
-                    className="mt-3 z-[1] card card-compact dropdown-content w-[377px] shadow-xl bg-body-0"
+                    className="mt-8 z-[1] card card-compact dropdown-content w-[440px] bg-white text-black shadow-2xl"
                   >
-                    <div className="card-body">
+                    <div className="card-body bg-white">
                       <div className="flex justify-between items-center">
                         <span className="font-bold text-lg">CART (3)</span>
-                        <span className="hover:underline opacity-60">Remove all</span>
+                        <button className="hover:underline opacity-60">
+                          Remove all
+                        </button>
                       </div>
-                      <div className="card-actions">
-                        <div className="flex justify-between items-center gap-32">
-                          <div className="flex gap-3">
-                            <h1 className="w-10 h-10 border"></h1>
-                            <div className="flex flex-col">
-                              <span>XX99 MK ||</span>
-                              <span className="opacity-65">$ 2.999</span>
+                      <div className="mt-">
+                        <div className="flex justify-between items-center">
+                          <div className="flex items-center gap-6">
+                            <img
+                              src={yx1}
+                              alt=""
+                              className="rounded-xl"
+                              width={70}
+                              height={70}
+                            />
+                            <div className="flex flex-col gap-1">
+                              <h1 className="text-md font-bold">{saveProducts}</h1>
+                              <p className="text-sm font-semibold opacity-55">
+                                $ {saveProducts}
+                              </p>
                             </div>
                           </div>
-                          <p className="w-24 h-8 border flex items-center">minus <span>1</span> plus</p>
+                          <div className="w-[120px] h-[38px] bg-[#F1F1F1] flex items-center justify-evenly">
+                            <button onClick={handleDecrement}>-</button>
+                            <h1 className="text-black font-semibold">
+                              {counter}
+                            </h1>
+                            <button onClick={handleIncrement}>+</button>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -90,12 +119,6 @@ function Header() {
               </div>
 
               <div className="flex gap-3">
-                <button
-                  onClick={handleRemove}
-                  className="btn btn-xs btn-outline btn-info"
-                >
-                  Log out
-                </button>
                 <button
                   onClick={handleLogin}
                   className="btn btn-xs btn-outline btn-info"

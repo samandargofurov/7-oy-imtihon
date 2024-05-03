@@ -6,25 +6,16 @@ import EarPhones from "./pages/EarPhones";
 import Layout from "./layout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { useEffect, useState } from "react";
-import "./App.css";
 import Details from "./pages/Details";
+import "./App.css";
+import Checkout from "./pages/Checkout";
 
 function App() {
-  const [ logged, setLogged ] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const user = localStorage.getItem('users')
-    if (user && location.pathname != '/register') {
-      setLogged(false);
-      navigate('/')
-    }
-  }, []);
   
   function ProtectedRoute({
     children,
-    isAuthentication = logged,
+    isAuthentication,
     redirectTo = "/login",
   }) {
     if (!isAuthentication) {
@@ -41,6 +32,7 @@ function App() {
 
         {/* protected route */}
         <Route path="/about/:id" element={<ProtectedRoute isAuthentication={true}><Layout><Details></Details></Layout></ProtectedRoute>}/>
+        <Route path="/checkout" element={<ProtectedRoute isAuthentication={true}><Layout><Checkout></Checkout></Layout></ProtectedRoute>}/>
         <Route
           path="/"
           element={

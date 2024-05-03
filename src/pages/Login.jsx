@@ -1,23 +1,60 @@
-import { useRef, useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { useRef, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Login() {
   const [users, setUsers] = useState([]);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const savedUsers = JSON.parse(localStorage.getItem("users"));
-    if (savedUsers) {
-      setUsers(savedUsers);
+  function validate(email, password) {
+    if (email.value.trim().length < 3) {
+      alert('Email has an error');
+      return false;
     }
-  }, []);
 
-  function handleClick() {
+    if (password.value.trim().length < 3) {
+      alert('Password has an error');
+      return false;
+    }
 
-    
+    return true;
   }
 
+  function getUsers() {
+    let users = [];
+
+    if (localStorage.getItem('users')) {
+      users = JSON.parse(localStorage.getItem('users'));
+    }
+
+    return users;
+  }
+
+  function handleClick() {
+    const isValid = validate(emailRef.current, passwordRef.current);
+
+    if (isValid) {
+      const user = {
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      };
+
+      let userData = users.find(user => user.email === user.email && user.password === user.password);
+
+      if (userData) {
+        navigate('/');
+      } else {
+        let copied = [...users, user];
+        localStorage.setItem('users', JSON.stringify(copied));
+        setUsers(copied);
+        navigate('/');
+      }
+    }
+
+    emailRef.current.value = '';
+    passwordRef.current.value = '';
+  }
 
   return (
     <>

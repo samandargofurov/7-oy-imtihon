@@ -33,14 +33,19 @@ import xx59book from "../assets/product-xx99-mark-two-headphones/Bitmap-1.jpg"
 import { NavLink, useParams } from "react-router-dom";
 import Card from "../components/Card";
 import Button from "../components/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment } from "../redux/counterSlice";
+import { saveProduct } from "../redux/addedSlice";
 
 function Details() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const counter = useSelector((state) => state.counter.value);
   const params = useParams();
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     fetch(`http://localhost:3000/${params.id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -50,12 +55,20 @@ function Details() {
         console.log(err);
       })
       .finally(() => {
-        setLoading(false)
-      })
+        setLoading(false);
+      });
   }, [params.id]);
 
-  function handleAdd() {
+  function handleSave() {
+    dispatch(saveProduct(data.name, data.price, data.counter))
+  }
 
+  function handleIncrement() {
+    dispatch(increment(1));
+  }
+
+  function handleDecrement() {
+    dispatch(decrement(1));
   }
 
   return (
@@ -88,18 +101,14 @@ function Details() {
                       {data.name}
                     </div>
                     <div className="text-black mb-8">{data.description}</div>
-                    <p className="font-bold text-2xl">$ {data.price / 1000}</p>
+                    <p className="font-bold text-2xl">$ {data.price * counter}</p>
                     <div className="flex gap-8 mt-[47px]">
                       <div className="w-[120px] h-[48px] bg-[#F1F1F1] flex items-center justify-evenly">
-                        <p className="text-black opacity-40 cursor-pointer font-bold hover:text-[#D87D4A]">
-                          -
-                        </p>
-                        <p className="text-black font-semibold">1</p>
-                        <p className="text-black opacity-40 cursor-pointer font-bold hover:text-[#D87D4A]">
-                          +
-                        </p>
+                        <button onClick={handleDecrement}>-</button>
+                          <h1 className="text-black font-semibold">{counter}</h1>
+                        <button onClick={handleIncrement}>+</button>
                       </div>
-                      <button onClick={handleAdd} className="w-[160px] h-[48px] bg-[#D87D4A] flex justify-center items-center text-white uppercase font-semibold">
+                      <button onClick={handleSave} className="w-[160px] h-[48px] bg-[#D87D4A] flex justify-center items-center text-white uppercase font-semibold">
                         add to cart
                       </button>
                     </div>
@@ -199,7 +208,7 @@ function Details() {
                             params.id == 'xx59-headphones' && 'XX99 MARK II'
                           }
                           </h3>
-                          <NavLink to={`/about/${params.id}`}>
+                          <NavLink to='x99-mark-two-headphones'>
                             <Button></Button>
                           </NavLink>
                         </div>
